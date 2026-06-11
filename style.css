@@ -1008,72 +1008,7 @@ img {
     transform: translateX(4px);
 }
 
-/* ==========================================
-   CERTIFICATIONS SECTION
-   ========================================== */
-.certs-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-}
 
-.cert-card {
-    border: 1px dashed rgba(255, 255, 255, 0.15);
-    background: rgba(255, 255, 255, 0.01);
-    border-radius: var(--border-radius-lg);
-    padding: 2rem 1.5rem;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 180px;
-    transition: var(--transition-smooth);
-    position: relative;
-    overflow: hidden;
-}
-
-.cert-card:hover {
-    border-color: var(--accent-orange);
-    background: rgba(255, 123, 0, 0.02);
-    transform: translateY(-3px);
-}
-
-.cert-card:nth-child(even):hover {
-    border-color: var(--accent-purple);
-    background: rgba(157, 78, 221, 0.02);
-}
-
-.cert-card-icon {
-    font-size: 2rem;
-    margin-bottom: 0.75rem;
-    color: var(--text-muted);
-    opacity: 0.7;
-    transition: var(--transition-smooth);
-}
-
-.cert-card:hover .cert-card-icon {
-    color: var(--accent-orange);
-    opacity: 1;
-    transform: scale(1.1);
-}
-
-.cert-card:nth-child(even):hover .cert-card-icon {
-    color: var(--accent-purple);
-}
-
-.cert-card h4 {
-    font-family: var(--font-heading);
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text-secondary);
-}
-
-.cert-card p {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    margin-top: 0.5rem;
-}
 
 /* ==========================================
    CONTACT SECTION
@@ -1246,7 +1181,7 @@ textarea.form-control {
 .toast-msg {
     position: fixed;
     bottom: 2rem;
-    right: -400px;
+    right: 2rem;
     background: var(--bg-tertiary);
     border: 1px solid var(--accent-orange);
     border-radius: var(--border-radius-md);
@@ -1256,11 +1191,18 @@ textarea.form-control {
     align-items: center;
     gap: 0.75rem;
     z-index: 2000;
-    transition: right 0.5s cubic-bezier(0.1, 1, 0.1, 1);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), visibility 0.4s;
 }
 
 .toast-msg.show {
-    right: 2rem;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
 }
 
 .toast-icon {
@@ -1423,9 +1365,7 @@ textarea.form-control {
         gap: 1.5rem;
     }
     
-    .certs-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+
     
     .contact-grid {
         grid-template-columns: 1fr;
@@ -1562,9 +1502,7 @@ textarea.form-control {
     
 
     
-    .certs-grid {
-        grid-template-columns: 1fr;
-    }
+
     
     .contact-info-column {
         flex-direction: column;
