@@ -109,31 +109,36 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // MODAL WINDOW CONTROL
     // ==========================================
-    const vetModal = document.getElementById('vetModal');
-    const openVetBtn = document.getElementById('openVetProject');
-    const closeVetBtn = vetModal ? vetModal.querySelector('.modal-close') : null;
-    const modalOverlay = vetModal ? vetModal.querySelector('.modal-overlay') : null;
+    function setupModal(modalId, triggerBtnId) {
+        const modal = document.getElementById(modalId);
+        const triggerBtn = document.getElementById(triggerBtnId);
+        if (!modal || !triggerBtn) return;
 
-    if (vetModal && openVetBtn) {
-        openVetBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            vetModal.classList.add('open');
-            document.body.style.overflow = 'hidden'; // Lock background scroll
-        });
+        const closeBtn = modal.querySelector('.modal-close');
+        const modalOverlay = modal.querySelector('.modal-overlay');
 
-        const closeModal = () => {
-            vetModal.classList.remove('open');
-            document.body.style.overflow = ''; // Restore background scroll
+        const openModal = (e) => {
+            if (e) e.preventDefault();
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
         };
 
-        if (closeVetBtn) closeVetBtn.addEventListener('click', closeModal);
+        const closeModal = () => {
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+        };
+
+        triggerBtn.addEventListener('click', openModal);
+        if (closeBtn) closeBtn.addEventListener('click', closeModal);
         if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
 
-        // Escape key to close modal
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && vetModal.classList.contains('open')) {
+            if (e.key === 'Escape' && modal.classList.contains('open')) {
                 closeModal();
             }
         });
     }
+
+    setupModal('vetModal', 'openVetProject');
+    setupModal('fiberprintModal', 'openFiberprintProject');
 });
